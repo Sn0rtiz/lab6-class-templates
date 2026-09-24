@@ -76,6 +76,18 @@ T get(int index) const
 // TODO (Part D): Define MetricLog<T>::contains outside the class.
 // It receives a generic target by const reference.
 // Return true when an equal stored value exists; otherwise return false.
+template <typename T>
+bool MetricLog<T>::contains(const T& target) const
+{
+    for (int i=0; i < count; i++)
+    {
+        if (values[i] == target)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 int main()
 {
