@@ -13,12 +13,17 @@ using namespace std;
  *
  * Data:
  * [Complete in Part E: describe the values managed by this log.]
+ * It manages a fixed-size array of generic values, along with a count of how many values are currently stored.
  *
  * Operations:
  * [Complete in Part E: describe add(value).]
+ * Adds a new value to the log if there is remaining capacity. Returns true if the value was added, false otherwise
  * [Complete in Part E: describe get(index) and its precondition.]
+ * Returns the value at the specified index in the log. Precondition: index must be between 0 and size() - 1.
  * [Complete in Part E: describe contains(target).]
+ * Returns true if the log contains a value equal to the specified target, false otherwise.
  * [Complete in Part E: describe size() and isEmpty().]
+ * Returns the number of values currently stored in the log. Returns true if the log is empty, false otherwise.
  */
 
 template <typename T>
@@ -69,6 +74,7 @@ T get(int index) const
         return count == 0;    
     }
 
+    bool contains(const T& target) const;
 };
 
 // ===== Do not resolve these TODOs yet (Part D) =====
@@ -107,6 +113,29 @@ int main()
     // TODO (Part E): Add two dummy duration values to that log.
     // TODO (Part E): Use contains with one value that exists and one that does not exist.
     // TODO (Part E): Print descriptive English labels for all results.
+    MetricLog<double> sessionDurations;
+    sessionDurations.add(5.5);
+    sessionDurations.add(89.3);
+    bool exists = sessionDurations.contains(5.5);
+    bool notExists = sessionDurations.contains(10.0);
+
+    if (exists==true)
+    {
+        cout << "Duration exists: True"  << endl;
+    }
+        else
+        {
+            cout << "Duration exists: False" << endl;
+        }
+
+    if (notExists==false)
+    {
+        cout << "Other Duration exists: False"  << endl;
+    }
+        else
+        {
+            cout << "Duration exists: True" << endl;
+        }
 
     return 0;
 }
